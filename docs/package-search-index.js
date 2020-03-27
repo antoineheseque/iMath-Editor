@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"fr.iMath"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"fr.iMath"},{"l":"fr.iMath.algorithms"},{"l":"fr.iMath.controllers"},{"l":"fr.iMath.mathematics"},{"l":"fr.iMath.objects"}]
