@@ -1,5 +1,5 @@
 # iMath : Node Editor
-**v1.0.0** 
+*[![Version](https://img.shields.io/badge/Version-v1.0.0-green)](https://jdk.java.net/14/)
 
 ## Table of Contents  
 [Features](#features)  
@@ -21,6 +21,8 @@ Documentation is generated using javadoc and is available at: [Documentation](ht
 
 ## Getting started
 ### Dependencies
+[![JDK14](https://img.shields.io/badge/JDK-14-green)](https://jdk.java.net/14/) [![JavaFX14](https://img.shields.io/badge/JavaFX-14-green)](https://jdk.java.net/14/)
+
 iMath is using the following dependencies:
 - JDK version **14** [available here](https://jdk.java.net/14/)
 - JavaFX version **14** [available here](https://gluonhq.com/products/javafx/)
