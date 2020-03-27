@@ -1,13 +1,23 @@
 # iMath : Node Editor
 **v1.0.0** 
 
-[TOCM]
+## Table of Contents  
+[Features](#features)  
+[Documentation](#documentation)  
+[Getting Started](#gettingStarted)
+
+<a name="features"/>
 
 ## Features
+
 *Coming soon*
+
+<a name="documentation"/>
 
 ## Documentation
 Documentation is generated using javadoc and is available at: [Documentation](https://imath.antoineh.tech)
+
+<a name="gettingStarted"/>
 
 ## Getting started
 ### Dependencies
