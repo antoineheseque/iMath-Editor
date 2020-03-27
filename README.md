@@ -10,7 +10,7 @@
 
 ## Features
 
-*Coming soon*
+*Coming soon ...*
 
 <a name="documentation"/>
 
@@ -22,8 +22,8 @@ Documentation is generated using javadoc and is available at: [Documentation](ht
 ## Getting started
 ### Dependencies
 iMath is using the following dependencies:
-- JDK version 14
-- JavaFX version 14
+- JDK version **14** [available here](https://jdk.java.net/14/)
+- JavaFX version **14** [available here](https://gluonhq.com/products/javafx/)
 
 ### Downloading the repository
 `git clone git@github.com:antoineheseque/iMath-NodeEditor.git`
@@ -31,4 +31,4 @@ iMath is using the following dependencies:
 Or click the `Clone or Download` button on the right.
 
 ### IDE
-*Coming soon*
+*Coming soon ...*
