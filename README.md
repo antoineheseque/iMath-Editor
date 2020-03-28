@@ -1,5 +1,5 @@
 # iMath : Node Editor
-![Version](https://img.shields.io/badge/Version-v1.0.0-green)
+![Version](https://img.shields.io/badge/Version-v1.0.1-green)
 
 ## Table of Contents  
 [Features](#features)  

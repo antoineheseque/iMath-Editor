@@ -1,9 +1,8 @@
 package fr.iMath.objects;
 
 /**
- * Operator
- * @author antoi
- *
+ * Operator class.
+ * @author HESEQUE Antoine
  */
 public enum Operator {
 	LEFTPARENTHESIS("(",-1,Assoc.NONE),
@@ -15,24 +14,54 @@ public enum Operator {
 	POWER("^",2,Assoc.RIGHT_ASSOC),
 	NEGATE("~",2,Assoc.LEFT_ASSOC);
 	
+	/**
+	 * Operator name given as a String
+	 */
 	private String operator;
+	
+	/**
+	 * The priority for this operator. Used to execute the ShuntingYard Algorithm
+	 * @see fr.iMath.algorithms.ShuntingYardAlgorithm
+	 */
 	private int priority;
+	
+	/**
+	 * The associativity for this Operator. Can be LEFT_ASSOC or RIGHT_ASSOC
+	 */
 	private Assoc associativity;
 	 
+	/**
+	 * Create the operator automatically when using (for instance) {@code Operator a = Operator.ADD;}  
+	 * @param operator Operator in String format
+	 * @param priority Priority of the operator
+	 * @param associativity Associativity of the operator
+	 */
     Operator(String operator, int priority, Assoc associativity) {
         this.operator = operator;
         this.priority = priority;
         this.associativity = associativity;
     }
-
+    
+    /**
+     * Return the operator as a String.
+     * @return the operator
+     */
     public String getOperator() {
         return operator;
     }
     
+    /**
+     * Return the priority of the operator.
+     * @return the priority
+     */
     public int getPriority() {
         return priority;
     }
     
+    /**
+     * Return the associativity of the operator.
+     * @return the associativity
+     */
     public Assoc getAssociativity() {
         return associativity;
     }
