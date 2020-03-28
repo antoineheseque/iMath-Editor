@@ -5,7 +5,6 @@ public class EquationObjectData {
 	 * Contain the type of the equation object. Can be an operator, a variable or a number.
 	 */
 	private EquationObjectType type;
-	
 	private String variable;
 	private float number;
 	private Operator operator;
@@ -25,7 +24,7 @@ public class EquationObjectData {
 		this.operator = operator;
 	}
 	
-	public Object getValue() {
+	public Object getObject() {
 		switch(type) {
 		case NUMBER:
 			return number;
@@ -36,5 +35,9 @@ public class EquationObjectData {
 		default:
 			return null;
 		}
+	}
+
+	public Object getType() {
+		return this.type;
 	}
 }
