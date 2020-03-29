@@ -30,17 +30,17 @@ public class RPNAlgorithm {
 				numbers.add(new EquationObjectData(getResult((Function)obj.getObject(), (Float)a.getObject())));
 			}
 			else {
-				EquationObjectData a = numbers.pop();
-				EquationObjectData b = numbers.pop();
+				Float b = (Float) numbers.pop().getObject();
+				Float a = (Float) numbers.pop().getObject();
 				
-				numbers.add(new EquationObjectData(getResult((Operator)obj.getObject(), (Float)a.getObject(), (Float)b.getObject())));
+				numbers.add(new EquationObjectData(getResult((Operator)obj.getObject(), a, b)));
 			}
 		}
 		
 		return (Float)numbers.pop().getObject();
 	}
 	
-	private static float getResult(Operator operator, Float b, Float a) {
+	private static float getResult(Operator operator, Float a, Float b) {
 		switch(operator) {
 		case PLUS:
 			return Math.add(a, b);

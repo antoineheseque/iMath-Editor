@@ -37,5 +37,9 @@ public class Math {
 	 * @param b Second number
 	 * @return a/b
 	 */
-	public static float divide(float a, float b) { return a/b; }
+	public static float divide(float a, float b) { 
+		if(b!=0)
+			return a/b;
+		return 0;
+	}
 }

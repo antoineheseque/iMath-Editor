@@ -11,9 +11,10 @@ import javafx.scene.chart.XYChart;
 public class Equation {
 	
 	private Stack<EquationObjectData> data;
+	private String function = "";
 	
 	public Equation(String function) {
-		
+		this.function = function;
 		System.out.println("[iMath] Creating the function f(x) = " + function);
 		
 		// Analyse the input
@@ -54,7 +55,7 @@ public class Equation {
 	 */
 	public XYChart.Series<Float, Float> getGraph(float min, float max, int nbrValues) {
 		XYChart.Series<Float, Float> values = new XYChart.Series<>();
-		
+		values.setName("f(x) = "+function);
 		float step = (max-min) / nbrValues;
 		
 		for(int i = 0; i < nbrValues; i++) {
