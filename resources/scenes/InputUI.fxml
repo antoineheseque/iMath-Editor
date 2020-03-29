@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.embed.swing.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="800.0" maxWidth="1200.0" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iMath.controllers.InputController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="560.0" style="-fx-background-color: #00000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="../../src/fr.iMath/controllers/GraphController">
    <children>
-      <Text fill="WHITE" layoutX="489.0" layoutY="74.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="Input UI" AnchorPane.leftAnchor="489.0" AnchorPane.rightAnchor="489.7177734375" AnchorPane.topAnchor="37.310546875">
+      <Label layoutX="27.0" layoutY="26.0" text="Bienvenue dans iMath">
          <font>
-            <Font size="34.0" />
+            <Font name="Century" size="26.0" />
          </font>
-      </Text>
+      </Label>
+      <TextArea fx:id="equationArea" layoutX="89.0" layoutY="92.0" prefHeight="107.0" prefWidth="407.0" />
+      <Label layoutX="27.0" layoutY="92.0" prefHeight="33.0" prefWidth="57.0" text="f(x) = ">
+         <font>
+            <Font name="Ink Free" size="21.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="showGraphs" layoutX="89.0" layoutY="215.0" mnemonicParsing="false" text="Afficher le graphs" />
+      <TextField fx:id="from" layoutX="220.0" layoutY="211.0" prefHeight="17.0" prefWidth="57.0" promptText="entre" />
+      <TextField fx:id="to" layoutX="287.0" layoutY="211.0" prefHeight="17.0" prefWidth="57.0" promptText="et" />
+      <Button fx:id="evaluate" layoutX="89.0" layoutY="250.0" mnemonicParsing="false" onAction="#evaluate" text="Calculer" />
+      <Button fx:id="help" layoutX="476.0" layoutY="275.0" mnemonicParsing="false" onAction="#help" text="Aide" />
+      <TextField fx:id="linspace" layoutX="358.0" layoutY="211.0" prefHeight="25.0" prefWidth="114.0" promptText="Nombre de points" />
    </children>
 </AnchorPane>

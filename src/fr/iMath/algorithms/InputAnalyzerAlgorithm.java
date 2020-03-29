@@ -29,7 +29,7 @@ public class InputAnalyzerAlgorithm {
         matchesOperator(function,"[()+\\/*\\^~]|[1-9a-z]-[a-z]+");
         matchesNegative(function,"-\\(|([^a-z1-9]|^)(-[a-z])");
         matchesChar(function,"[a-z]*");
-        //showList(getList(list));
+        showList(getList(list));
 		System.out.println("Analysis finished.");
         return getList(list);
     }
@@ -155,7 +155,6 @@ public class InputAnalyzerAlgorithm {
                 objectList.add(new EquationObjectData(Operator.PLUS));
             objectList.add(value);
             previous = value;
-
         }
         return objectList;
     }
