@@ -6,6 +6,7 @@ import java.util.Stack;
 import fr.iMath.algorithms.InputAnalyzerAlgorithm;
 import fr.iMath.algorithms.RPNAlgorithm;
 import fr.iMath.algorithms.ShuntingYardAlgorithm;
+import javafx.scene.chart.XYChart;
 
 public class Equation {
 	
@@ -36,7 +37,12 @@ public class Equation {
 	 */
 	public float evaluate(float xValue) {
 		// Use the RPN Algorithm
-		return RPNAlgorithm.evaluate(data, xValue);
+		@SuppressWarnings("unchecked")
+		Stack<EquationObjectData> stack = (Stack<EquationObjectData>)data.clone();
+		
+		float value = RPNAlgorithm.evaluate(stack, xValue);
+		stack = null;
+		return value;
 	}
 	
 	/**
@@ -46,13 +52,14 @@ public class Equation {
 	 * @param nbrValues The total nummber of values
 	 * @return an array containing all the values
 	 */
-	public float[] getGraph(float min, float max, int nbrValues) {
-		float[] values = new float[nbrValues];
+	public XYChart.Series<Float, Float> getGraph(float min, float max, int nbrValues) {
+		XYChart.Series<Float, Float> values = new XYChart.Series<>();
 		
 		float step = (max-min) / nbrValues;
 		
 		for(int i = 0; i < nbrValues; i++) {
-			values[i] = evaluate(i*step);
+			float pos = min+i*step;
+			values.getData().add(new XYChart.Data<>(pos,evaluate(pos)));
 		}
 		
 		return values;

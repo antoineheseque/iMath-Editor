@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -7,26 +12,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1318.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iMath.controllers.InputController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iMath.controllers.GraphController">
    <children>
-      <LineChart fx:id="result" animated="false" prefHeight="652.0" prefWidth="810.0" title="Résultat">
+      <LineChart fx:id="result" animated="false" prefHeight="652.0" prefWidth="810.0" title="Result">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <NumberAxis side="BOTTOM" />
         </xAxis>
         <yAxis>
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <Label layoutX="852.0" layoutY="28.0" text="iMath">
-         <font>
-            <Font name="Century" size="26.0" />
-         </font>
-      </Label>
-      <Label fx:id="equation" layoutX="864.0" layoutY="86.0" text="f(x) = ">
-         <font>
-            <Font name="Ink Free" size="18.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

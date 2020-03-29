@@ -1,6 +1,5 @@
 package fr.iMath;
 
-import fr.iMath.objects.Equation;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +12,6 @@ import javafx.stage.Stage;
  * @author JEANNIN Louis
  */
 public class Main extends Application{
-	private static String string = "-2(5+5/2.25x)";
 
 	/**
 	 * Main function
@@ -21,11 +19,6 @@ public class Main extends Application{
 	 */
 	public static void main(String[] args) {
 		System.setProperty("file.encoding", "UTF-8");
-		
-		Equation function = new Equation(string);
-		Float value = function.evaluate(10);
-		
-		System.out.println("[iMath] f(10) = " + value);
 		launch(args);
 	}
 

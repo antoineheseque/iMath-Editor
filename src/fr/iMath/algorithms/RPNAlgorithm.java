@@ -7,6 +7,7 @@ import fr.iMath.objects.EquationObjectType;
 import fr.iMath.objects.Function;
 import fr.iMath.objects.Operator;
 import fr.iMath.mathematics.Math;
+import fr.iMath.mathematics.Trigonometry;
 
 /**
  * Application of the Reverse Polish Algorithm
@@ -40,7 +41,6 @@ public class RPNAlgorithm {
 	}
 	
 	private static float getResult(Operator operator, Float b, Float a) {
-		System.out.println("Operation: " + operator + ": " + a + " - " + b);
 		switch(operator) {
 		case PLUS:
 			return Math.add(a, b);
@@ -56,14 +56,13 @@ public class RPNAlgorithm {
 	}
 	
 	private static float getResult(Function function, Float a) {
-		System.out.println("Function: " + function + ": " + a);
 		switch(function) {
 		case SIN:
-			System.out.println("Not yet implemented");
+			return Trigonometry.sin(a);
 		case COS:
-			System.out.println("Not yet implemented");
+			return Trigonometry.cos(a);
 		case TAN:
-			System.out.println("Not yet implemented");
+			return Trigonometry.tan(a);
 		}
 		return 0f;
 	}
