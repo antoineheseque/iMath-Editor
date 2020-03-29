@@ -3,6 +3,7 @@ package fr.iMath.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 public class InputController implements Initializable {	
@@ -12,6 +13,14 @@ public class InputController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//
+		// Do stuff ...
 	}
+	
+	public void evaluate(ActionEvent event) {
+		// Do stuff ...
+    }
+	
+	public void help(ActionEvent event) {
+		// Do stuff ...
+    }
 }

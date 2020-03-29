@@ -21,6 +21,12 @@ public class Equation {
 		
 		// Use the Shunting-Yard Algorithm
 		data = ShuntingYardAlgorithm.convert(list);
+		
+		System.out.println("------[ Shunting-Yard Algorithm ]--------");
+		for(EquationObjectData d : data){
+			System.out.println(d.getObject());
+		}
+		System.out.println("--------------");
 	}
 	
 	/**

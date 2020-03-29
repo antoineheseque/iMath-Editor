@@ -23,7 +23,7 @@ public enum Operator {
 	 * The priority for this operator. Used to execute the ShuntingYard Algorithm
 	 * @see fr.iMath.algorithms.ShuntingYardAlgorithm
 	 */
-	private int priority;
+	private int precedence;
 	
 	/**
 	 * The associativity for this Operator. Can be LEFT_ASSOC or RIGHT_ASSOC
@@ -36,9 +36,9 @@ public enum Operator {
 	 * @param priority Priority of the operator
 	 * @param associativity Associativity of the operator
 	 */
-    Operator(String operator, int priority, Assoc associativity) {
+    Operator(String operator, int precedence, Assoc associativity) {
         this.operator = operator;
-        this.priority = priority;
+        this.precedence = precedence;
         this.associativity = associativity;
     }
     
@@ -54,8 +54,8 @@ public enum Operator {
      * Return the priority of the operator.
      * @return the priority
      */
-    public int getPriority() {
-        return priority;
+    public int getPrecedence() {
+        return precedence;
     }
     
     /**

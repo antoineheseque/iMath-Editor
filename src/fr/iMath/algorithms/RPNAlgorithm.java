@@ -19,7 +19,6 @@ public class RPNAlgorithm {
 		
 		while(!data.isEmpty()) {
 			EquationObjectData obj = data.remove(0);
-			System.out.println(obj.getType());
 			
 			if(obj.getType() == EquationObjectType.NUMBER)
 				numbers.add(obj);
@@ -40,7 +39,8 @@ public class RPNAlgorithm {
 		return (Float)numbers.pop().getObject();
 	}
 	
-	private static float getResult(Operator operator, Float a, Float b) {
+	private static float getResult(Operator operator, Float b, Float a) {
+		System.out.println("Operation: " + operator + ": " + a + " - " + b);
 		switch(operator) {
 		case PLUS:
 			return Math.add(a, b);
@@ -56,6 +56,7 @@ public class RPNAlgorithm {
 	}
 	
 	private static float getResult(Function function, Float a) {
+		System.out.println("Function: " + function + ": " + a);
 		switch(function) {
 		case SIN:
 			System.out.println("Not yet implemented");
