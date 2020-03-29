@@ -1,6 +1,6 @@
 package fr.iMath;
 
-import fr.iMath.objects.Function;
+import fr.iMath.objects.Equation;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  * @author JEANNIN Louis
  */
 public class Main extends Application{
-	private static String string = "-3(2-8)5^-5(5*2)3";
+	private static String string = "-3(-x+2-8)5^-5(5*2)3";
 
 	/**
 	 * Main function
@@ -19,8 +19,15 @@ public class Main extends Application{
 	public static void main(String[] args) {
 		System.setProperty("file.encoding", "UTF-8");
 		
-		Function function = new Function(string);
+		Equation function = new Equation(string);
 		Float value = function.evaluate(10);
+		
+		// Test RPN Algorithm
+		/*Stack<EquationObjectData> data = new Stack<EquationObjectData>();
+		data.add(new EquationObjectData(5));
+		data.add(new EquationObjectData("x"));
+		data.add(new EquationObjectData(Operator.PLUS));
+		Float value = RPNAlgorithm.evaluate(data, 10);*/
 		
 		System.out.println("[iMath] f(10) = " + value);
 		launch(args);

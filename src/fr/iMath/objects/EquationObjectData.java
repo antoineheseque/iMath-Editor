@@ -8,6 +8,7 @@ public class EquationObjectData {
 	private String variable;
 	private float number;
 	private Operator operator;
+	private Function function;
 	
 	public EquationObjectData(String variable) {
 		this.type = EquationObjectType.VARIABLE;
@@ -24,6 +25,11 @@ public class EquationObjectData {
 		this.operator = operator;
 	}
 	
+	public EquationObjectData(Function function) {
+		this.type = EquationObjectType.FUNCTION;
+		this.function = function;
+	}
+	
 	public Object getObject() {
 		switch(type) {
 		case NUMBER:
@@ -32,6 +38,8 @@ public class EquationObjectData {
 			return operator;
 		case VARIABLE:
 			return variable;
+		case FUNCTION:
+			return function;
 		default:
 			return null;
 		}
