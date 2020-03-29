@@ -1,8 +1,10 @@
 package fr.iMath.algorithms;
 
 import fr.iMath.objects.EquationObjectData;
+import fr.iMath.objects.EquationObjectType;
 import fr.iMath.objects.Operator;
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,24 +13,22 @@ import java.util.regex.Pattern;
  * @author JEANNIN Louis
  *
  */
-
 public class InputAnalyzerAlgorithm {
 	// Convert StringInput to a list of Numbers and Operations here ..
     private SortedMap<Integer, EquationObjectData> list = new TreeMap<>();
-    private List<Integer> indexArray = new ArrayList<>();
+    //private List<Integer> indexArray = new ArrayList<>();
 
     /**
      * Analyse.
      * @param function String
      * @return List of EquationObjectData
      */
-
     public List<EquationObjectData> analyse(String function){
+		System.out.println("Starting the analysis...");
         matchesConstant(function,"[1-9]*");
         matchesOperator(function,"[()+\\/*\\-^~]");
         matchesChar(function,"[a-z]*");
-        //System.out.println(function);
-        //showList(getList(list));
+		System.out.println("Analysis finished.");
         return getList(list);
     }
 
@@ -37,7 +37,6 @@ public class InputAnalyzerAlgorithm {
      * @param text String
      * @param regex String
      */
-
     public void matchesChar(String text, String regex) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
@@ -46,7 +45,7 @@ public class InputAnalyzerAlgorithm {
                 Pattern patternFunction = Pattern.compile("(ln|exp|sqrt|sinc|sin|cos|tan|pi)");
                 Matcher matcherFunction = patternFunction.matcher(matcher.group());
                 if(matcherFunction.find()){
-                    System.out.println("FONCTION : " + matcherFunction.group() + " -> NON IMPLEMTE");
+                    System.out.println("Function : " + matcherFunction.group() + " -> Not implemented yet.");
                 }
                 else{
                     Pattern patternVariable = Pattern.compile("[a-z]");
@@ -64,7 +63,6 @@ public class InputAnalyzerAlgorithm {
      * @param text String
      * @param regex String
      */
-
     public void matchesConstant(String text, String regex) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
@@ -80,7 +78,6 @@ public class InputAnalyzerAlgorithm {
      * @param text String
      * @param regex String
      */
-
     public void matchesOperator(String text, String regex) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
@@ -123,20 +120,19 @@ public class InputAnalyzerAlgorithm {
 
     /**
      * EquationObjectData list analysis.
-     * @param list Map<Integer,EquationObjectData>
+     * @param list {@code Map<Integer,EquationObjectData>}
      * @return List of EquationObjectData
      */
-
     public List<EquationObjectData> getList(SortedMap<Integer,EquationObjectData> list){
-        Set s = list.entrySet();
-        Iterator i = s.iterator();
+        Iterator<Entry<Integer, EquationObjectData>> i = list.entrySet().iterator();
         List<EquationObjectData> objectList = new ArrayList<>();
+        
         EquationObjectData previous = new EquationObjectData(Operator.DIVIDE);
         while (i.hasNext())
         {
-            Map.Entry m = (Map.Entry)i.next();
-            EquationObjectData value = (EquationObjectData) m.getValue();
-            if((!previous.getType().toString().equals("OPERATOR") || previous.getObject().toString().equals("RIGHTPARENTHESIS")) && (!value.getType().toString().equals("OPERATOR") || value.getObject().toString().equals("LEFTPARENTHESIS"))){
+            Map.Entry<Integer,EquationObjectData> m = i.next();
+            EquationObjectData value = m.getValue();
+            if((previous.getType() != EquationObjectType.OPERATOR || (Operator)previous.getObject() == Operator.RIGHTPARENTHESIS) && (value.getType() != EquationObjectType.OPERATOR || (Operator)value.getObject() == Operator.LEFTPARENTHESIS)){
                 objectList.add(new EquationObjectData(Operator.MULTIPLY));
             }
             objectList.add(value);
@@ -147,8 +143,8 @@ public class InputAnalyzerAlgorithm {
 
     /**
      * Show EquationObjectData list
+     * @param list Liste non ordonnée
      */
-
     public void showList(List<EquationObjectData> list) {
         for (EquationObjectData e : list) {
             System.out.println(e.getObject().toString());

@@ -37,7 +37,7 @@ public class EquationObjectData {
 		}
 	}
 
-	public Object getType() {
+	public EquationObjectType getType() {
 		return this.type;
 	}
 }
