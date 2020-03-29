@@ -3,6 +3,7 @@ package fr.iMath.algorithms;
 import fr.iMath.objects.EquationObjectData;
 import fr.iMath.objects.EquationObjectType;
 import fr.iMath.objects.Operator;
+
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
@@ -16,7 +17,6 @@ import java.util.regex.Pattern;
 public class InputAnalyzerAlgorithm {
 	// Convert StringInput to a list of Numbers and Operations here ..
     private SortedMap<Integer, EquationObjectData> list = new TreeMap<>();
-    //private List<Integer> indexArray = new ArrayList<>();
 
     /**
      * Analyse.
@@ -25,9 +25,11 @@ public class InputAnalyzerAlgorithm {
      */
     public List<EquationObjectData> analyse(String function){
 		System.out.println("Starting the analysis...");
-        matchesConstant(function,"[1-9]*");
-        matchesOperator(function,"[()+\\/*\\-^~]");
+        matchesConstant(function,"\\-?[1-9]+\\.?[1-9]*");
+        matchesOperator(function,"[()+\\/*\\^~]|[1-9a-z]-[a-z]+");
+        matchesNegative(function,"-\\(|([^a-z1-9]|^)(-[a-z])");
         matchesChar(function,"[a-z]*");
+        //showList(getList(list));
 		System.out.println("Analysis finished.");
         return getList(list);
     }
@@ -59,6 +61,22 @@ public class InputAnalyzerAlgorithm {
     }
 
     /**
+     * Update EquationObjectData list
+     * @param text String
+     * @param regex String
+     */
+
+    public void matchesNegative(String text, String regex) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            if(matcher.group().length() != 0) {
+                list.put(matcher.start(2), new EquationObjectData(-1));
+            }
+        }
+    }
+
+    /**
      * Update EquationObjectData list with constants
      * @param text String
      * @param regex String
@@ -84,13 +102,9 @@ public class InputAnalyzerAlgorithm {
         Operator operator;
         while (matcher.find()) {
             if(matcher.group().length() != 0){
-
                 switch(matcher.group()){
                     case "+":
                         operator = Operator.PLUS;
-                        break;
-                    case "-":
-                        operator = Operator.MINUS;
                         break;
                     case "*":
                         operator = Operator.MULTIPLY;
@@ -111,9 +125,12 @@ public class InputAnalyzerAlgorithm {
                         operator = Operator.RIGHTPARENTHESIS;
                         break;
                     default:
-                        operator = Operator.RIGHTPARENTHESIS;
+                        operator = Operator.MINUS;
                 }
-                list.put(matcher.start(), new EquationObjectData(operator));
+                if(operator != Operator.MINUS)
+                    list.put(matcher.start(), new EquationObjectData(operator));
+                else
+                    list.put(matcher.start()+1, new EquationObjectData(operator));
             }
         }
     }
@@ -132,18 +149,21 @@ public class InputAnalyzerAlgorithm {
         {
             Map.Entry<Integer,EquationObjectData> m = i.next();
             EquationObjectData value = m.getValue();
-            if((previous.getType() != EquationObjectType.OPERATOR || (Operator)previous.getObject() == Operator.RIGHTPARENTHESIS) && (value.getType() != EquationObjectType.OPERATOR || (Operator)value.getObject() == Operator.LEFTPARENTHESIS)){
+            if((previous.getType() != EquationObjectType.OPERATOR && value.getObject() == Operator.LEFTPARENTHESIS) || (previous.getObject() == Operator.RIGHTPARENTHESIS && value.getType() != EquationObjectType.OPERATOR) || (previous.getType() != EquationObjectType.OPERATOR && (value.getType() == EquationObjectType.VARIABLE || (value.getType() == EquationObjectType.NUMBER && Float.parseFloat(value.getObject().toString()) > 0))))
                 objectList.add(new EquationObjectData(Operator.MULTIPLY));
-            }
+            else if(previous.getType() != EquationObjectType.OPERATOR && (value.getType() == EquationObjectType.VARIABLE || (value.getType() == EquationObjectType.NUMBER && Float.parseFloat(value.getObject().toString()) < 0)))
+                objectList.add(new EquationObjectData(Operator.PLUS));
             objectList.add(value);
             previous = value;
+
         }
         return objectList;
     }
 
+
     /**
      * Show EquationObjectData list
-     * @param list Liste non ordonnée
+     * @param list Liste non ordonnï¿½e
      */
     public void showList(List<EquationObjectData> list) {
         for (EquationObjectData e : list) {
