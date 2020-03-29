@@ -33,7 +33,7 @@ public enum Operator {
 	/**
 	 * Create the operator automatically when using (for instance) {@code Operator a = Operator.ADD;}  
 	 * @param operator Operator in String format
-	 * @param priority Priority of the operator
+	 * @param precedence Priority of the operator
 	 * @param associativity Associativity of the operator
 	 */
     Operator(String operator, int precedence, Assoc associativity) {

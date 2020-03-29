@@ -13,7 +13,7 @@ import fr.iMath.objects.Operator;
  * Application of the Shunting-Yard algorithm
  * @author HESEQUE Antoine
  * 
- * @see Based on the <a href="https://en.wikipedia.org/wiki/Shunting-yard_algorithm">Shunting-Yard algorithm</a> from Wikipedia
+ * @see <a href="https://en.wikipedia.org/wiki/Shunting-yard_algorithm">ShuntingYard algorithm</a> from Wikipedia
  */
 public class ShuntingYardAlgorithm {
 	

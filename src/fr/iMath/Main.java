@@ -35,7 +35,7 @@ public class Main extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("/scenes/InputUI.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("resources/scenes/InputUI.fxml"));
 			Scene scene = new Scene(parent);
 			stage.setScene(scene);
 			stage.setTitle("[v1.0.1] iMath : NodeEditor");
