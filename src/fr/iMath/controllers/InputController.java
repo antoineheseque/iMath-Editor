@@ -11,8 +11,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Reflection;
 import javafx.stage.Stage;
 import fr.iMath.objects.*;
 
@@ -23,10 +25,13 @@ public class InputController implements Initializable {
 	
 	@FXML 
 	private TextArea equationArea;
-	
+
+	@FXML
+	private Label result;
+
 	private Equation equation = null;
 	private String equationString = "";
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// Do stuff ...
@@ -69,11 +74,18 @@ public class InputController implements Initializable {
 	
 	public void evaluate(ActionEvent event) {
 		if(equationArea.getText() != "") {
-			// Vérifier les types from et to
+			// Vï¿½rifier les types from et to
 			checkEquation();
-			
+
 			try {
 				float value = Float.parseFloat(evaluateValue.getText());
+				Reflection reflection = new Reflection();
+				reflection.setBottomOpacity(0.0);
+				reflection.setTopOpacity(0.5);
+				reflection.setTopOffset(1);
+				reflection.setFraction(0.7);
+				result.setEffect(reflection);
+				result.setText("f(" + evaluateValue.getText() +") = "+ String.valueOf(equation.evaluate(value)));
 				System.out.println(equation.evaluate(value));
 			}
 			catch(Exception e){
