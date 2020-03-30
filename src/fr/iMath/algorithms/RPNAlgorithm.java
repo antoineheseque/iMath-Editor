@@ -63,6 +63,16 @@ public class RPNAlgorithm {
 			return Trigonometry.cos(a);
 		case TAN:
 			return Trigonometry.tan(a);
+		case SINC:
+			return Trigonometry.sinc(a);
+		case LN:
+			return Math.ln(a);
+		case EXP:
+			return Math.exp(a);
+		case SQRT:
+			return Math.sqrt(a);
+		case PI:
+			return Trigonometry.pi();
 		}
 		return 0f;
 	}

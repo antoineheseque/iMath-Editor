@@ -2,6 +2,7 @@ package fr.iMath.algorithms;
 
 import fr.iMath.objects.EquationObjectData;
 import fr.iMath.objects.EquationObjectType;
+import fr.iMath.objects.Function;
 import fr.iMath.objects.Operator;
 
 import java.util.*;
@@ -29,7 +30,7 @@ public class InputAnalyzerAlgorithm {
         matchesOperator(function,"[()+\\/*\\^~]|[0-9a-z]-[a-z]+");
         matchesNegative(function,"-\\(|([^a-z0-9]|^)(-[a-z])");
         matchesChar(function,"[a-z]*");
-        //showList(getList(list));
+        showList(getList(list));
 		System.out.println("Analysis finished.");
         return getList(list);
     }
@@ -46,8 +47,34 @@ public class InputAnalyzerAlgorithm {
             if(matcher.group().length() != 0) {
                 Pattern patternFunction = Pattern.compile("(ln|exp|sqrt|sinc|sin|cos|tan|pi)");
                 Matcher matcherFunction = patternFunction.matcher(matcher.group());
+                Function function;
                 if(matcherFunction.find()){
-                    System.out.println("Function : " + matcherFunction.group() + " -> Not implemented yet.");
+                    switch(matcher.group()) {
+                        case "ln":
+                            function = Function.LN;
+                            break;
+                        case "sqrt":
+                            function = Function.SQRT;
+                            break;
+                        case "sin":
+                            function = Function.SIN;
+                            break;
+                        case "sinc":
+                            function = Function.SINC;
+                            break;
+                        case "exp":
+                            function = Function.EXP;
+                            break;
+                        case "cos":
+                            function = Function.COS;
+                            break;
+                        case "tan":
+                            function = Function.TAN;
+                            break;
+                        default:
+                            function = Function.PI;
+                    }
+                    list.put(matcher.start(), new EquationObjectData(function));
                 }
                 else{
                     Pattern patternVariable = Pattern.compile("[a-z]");
@@ -149,7 +176,8 @@ public class InputAnalyzerAlgorithm {
         {
             Map.Entry<Integer,EquationObjectData> m = i.next();
             EquationObjectData value = m.getValue();
-            if((previous.getType() != EquationObjectType.OPERATOR && value.getObject() == Operator.LEFTPARENTHESIS) || (previous.getObject() == Operator.RIGHTPARENTHESIS && value.getType() != EquationObjectType.OPERATOR) || (previous.getType() != EquationObjectType.OPERATOR && (value.getType() == EquationObjectType.VARIABLE || (value.getType() == EquationObjectType.NUMBER && Float.parseFloat(value.getObject().toString()) > 0))))
+            if((previous.getType() != EquationObjectType.OPERATOR && previous.getType() != EquationObjectType.FUNCTION && value.getObject() == Operator.LEFTPARENTHESIS) || (previous.getObject() == Operator.RIGHTPARENTHESIS && value.getType() != EquationObjectType.OPERATOR)
+                    || (previous.getType() != EquationObjectType.OPERATOR && (value.getType() == EquationObjectType.VARIABLE || (value.getType() == EquationObjectType.NUMBER && Float.parseFloat(value.getObject().toString()) > 0)) || ((previous.getType() == EquationObjectType.NUMBER || previous.getType() == EquationObjectType.VARIABLE) && value.getType() == EquationObjectType.FUNCTION)))
                 objectList.add(new EquationObjectData(Operator.MULTIPLY));
             else if(previous.getType() != EquationObjectType.OPERATOR && (value.getType() == EquationObjectType.VARIABLE || (value.getType() == EquationObjectType.NUMBER && Float.parseFloat(value.getObject().toString()) < 0)))
                 objectList.add(new EquationObjectData(Operator.PLUS));
