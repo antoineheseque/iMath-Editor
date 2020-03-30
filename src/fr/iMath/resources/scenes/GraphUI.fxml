@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iMath.controllers.GraphController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iMath.controllers.GraphController">
    <children>
-      <LineChart fx:id="result" animated="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="810.0" title="Result">
+      <ScatterChart fx:id="result" animated="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="810.0" title="Result">
         <xAxis>
           <NumberAxis side="BOTTOM" />
         </xAxis>
         <yAxis>
           <NumberAxis side="LEFT" />
         </yAxis>
-      </LineChart>
+      </ScatterChart>
    </children>
 </AnchorPane>

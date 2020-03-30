@@ -12,9 +12,11 @@ public class Equation {
 	
 	private Stack<EquationObjectData> data;
 	private String function = "";
+	private String prefix = "f(x)=";
 	
-	public Equation(String function) {
+	public Equation(String function, String prefix) {
 		this.function = function;
+		this.prefix = prefix;
 		System.out.println("[iMath] Creating the function f(x) = " + function);
 		
 		// Analyse the input
@@ -54,7 +56,7 @@ public class Equation {
 	 */
 	public XYChart.Series<Float, Float> getGraph(float min, float max, int nbrValues) {
 		XYChart.Series<Float, Float> values = new XYChart.Series<>();
-		values.setName("f(x) = "+function);
+		values.setName(prefix + function);
 		float step = (max-min) / nbrValues;
 		
 		for(int i = 0; i < nbrValues; i++) {

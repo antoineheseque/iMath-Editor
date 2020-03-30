@@ -95,13 +95,23 @@ public class InputController implements Initializable {
     }
 
 	public void parametricSwitch(ActionEvent event) {
-		// Do stuff ...
+		try{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/scenes/ParametricInputUI.fxml"));
+			Parent parent = loader.load();
+			
+			Scene scene = new Scene(parent);
+			Stage stage = (Stage) equationArea.getScene().getWindow();
+	        stage.setScene(scene);
+	        //newWindow.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void checkEquation() {
 		if(equationString != equationArea.getText()) {
 			equationString = equationArea.getText();
-			equation = new Equation(equationString);
+			equation = new Equation(equationString, "f(x)=");
 		}
 	}
 }
