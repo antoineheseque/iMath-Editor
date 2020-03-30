@@ -23,40 +23,47 @@ public class ShuntingYardAlgorithm {
 		
 		while(!list.isEmpty()) {
 			EquationObjectData token = list.remove(0);
-			
 			if(token.getType() == EquationObjectType.NUMBER) {
-				System.out.println((Float)token.getObject());
+				System.out.println("Push number " + token.getObject() + " to output.");
 				output.add(token);
 			}
 			else if(token.getType() == EquationObjectType.VARIABLE) {
-				System.out.println((String)token.getObject());
+				System.out.println("Push variable " + token.getObject() + " to output.");
 				output.add(token);
 			}
 			else if(token.getType() == EquationObjectType.FUNCTION) {
-				System.out.println((Function)token.getObject());
+				System.out.println("Push function " + token.getObject() + " to operators.");
 				operators.add(token);
 			}
 			else{
 				Operator ope = (Operator) token.getObject();
 				if(ope != Operator.LEFTPARENTHESIS && ope != Operator.RIGHTPARENTHESIS) {
+					if(!operators.isEmpty())
+						System.out.println("[TYPE] " + operators.peek().getType());
 					while(!operators.isEmpty() && 
 							(((operators.peek().getType() == EquationObjectType.FUNCTION)
 							|| ((Operator)(operators.peek().getObject())).getPrecedence() > ope.getPrecedence())
 							|| ((((Operator)(operators.peek().getObject())).getPrecedence() == ope.getPrecedence()) && ope.getAssociativity() == Assoc.LEFT_ASSOC)
-							) && ((Operator)(operators.peek().getObject()) != Operator.LEFTPARENTHESIS))
+							) && (isLeftParenthesis(operators.peek()) || (operators.peek().getType() == EquationObjectType.FUNCTION)))
 					{
+						System.out.println("Push operator " + operators.peek().getObject() + " to output.");
 						output.add(operators.pop());
 					}
+					System.out.println("Push token " + token.getObject() + " to operators.");
 					operators.add(token);
 				}
-				else if((Operator) token.getObject() == Operator.LEFTPARENTHESIS) {
+				else if(isLeftParenthesis(token)) {
+					System.out.println("Push operator " + token.getObject() + " to operators.");
 					operators.add(token);
 				}
 				else {
-					while((Operator)(operators.peek().getObject()) != Operator.LEFTPARENTHESIS) {
+					System.out.println("Right parenthesis detected.");
+					while(!isLeftParenthesis(operators.peek())) {
+						System.out.println("Push operator " + operators.peek().getObject() + " to output.");
 						output.add(operators.pop());
 					}
-					if(((Operator)operators.peek().getObject()) == Operator.LEFTPARENTHESIS) {
+					if(isLeftParenthesis(operators.peek())) {
+						System.out.println("Discard left parenthesis.");
 						operators.pop(); // Discard it.
 					}
 				}
@@ -69,5 +76,12 @@ public class ShuntingYardAlgorithm {
 		}
 		
 		return output;
+	}
+	
+	private static boolean isLeftParenthesis(EquationObjectData d) {
+		if((d.getType() == EquationObjectType.OPERATOR) && (d.getObject() == Operator.LEFTPARENTHESIS))
+			return true;
+		else
+			return false;
 	}
 }

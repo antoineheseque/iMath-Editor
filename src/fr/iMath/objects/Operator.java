@@ -11,8 +11,7 @@ public enum Operator {
 	MINUS("-",0,Assoc.LEFT_ASSOC),
 	MULTIPLY("*",1,Assoc.LEFT_ASSOC),
 	DIVIDE("/",1,Assoc.LEFT_ASSOC),
-	POWER("^",2,Assoc.RIGHT_ASSOC),
-	NEGATE("~",2,Assoc.LEFT_ASSOC);
+	POWER("^",2,Assoc.RIGHT_ASSOC);
 	
 	/**
 	 * Operator name given as a String

@@ -7,7 +7,6 @@ public enum Function {
 	TAN,
 	SQRT,
 	LN,
-	POWER,
 	EXP,
 	PI
 }

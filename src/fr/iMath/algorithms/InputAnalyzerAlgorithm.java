@@ -142,9 +142,6 @@ public class InputAnalyzerAlgorithm {
                     case "^":
                         operator = Operator.POWER;
                         break;
-                    case "~":
-                        operator = Operator.NEGATE;
-                        break;
                     case "(":
                         operator = Operator.LEFTPARENTHESIS;
                         break;
