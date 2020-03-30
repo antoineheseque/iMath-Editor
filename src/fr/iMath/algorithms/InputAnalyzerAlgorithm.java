@@ -72,7 +72,8 @@ public class InputAnalyzerAlgorithm {
                             function = Function.TAN;
                             break;
                         default:
-                            function = Function.PI;
+                            list.put(matcher.start(), new EquationObjectData((float)Math.PI));
+                            continue;
                     }
                     list.put(matcher.start(), new EquationObjectData(function));
                 }
