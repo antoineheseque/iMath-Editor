@@ -25,9 +25,9 @@ public class InputAnalyzerAlgorithm {
      */
     public List<EquationObjectData> analyse(String function){
 		System.out.println("Starting the analysis...");
-        matchesConstant(function,"\\-?[1-9]+\\.?[1-9]*");
-        matchesOperator(function,"[()+\\/*\\^~]|[1-9a-z]-[a-z]+");
-        matchesNegative(function,"-\\(|([^a-z1-9]|^)(-[a-z])");
+        matchesConstant(function,"\\-?[0-9]+\\.?[0-9]*");
+        matchesOperator(function,"[()+\\/*\\^~]|[0-9a-z]-[a-z]+");
+        matchesNegative(function,"-\\(|([^a-z0-9]|^)(-[a-z])");
         matchesChar(function,"[a-z]*");
         //showList(getList(list));
 		System.out.println("Analysis finished.");

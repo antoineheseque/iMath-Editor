@@ -31,10 +31,17 @@ public class InputController implements Initializable {
 
 	private Equation equation = null;
 	private String equationString = "";
+	
+	private Reflection reflection = null;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// Do stuff ...
+		reflection = new Reflection();
+		reflection.setBottomOpacity(0.0);
+		reflection.setTopOpacity(0.5);
+		reflection.setTopOffset(1);
+		reflection.setFraction(0.7);
+		result.setEffect(reflection);
 	}
 	
 	public void showGraph(ActionEvent event) {
@@ -74,18 +81,11 @@ public class InputController implements Initializable {
 	
 	public void evaluate(ActionEvent event) {
 		if(equationArea.getText() != "") {
-			// V�rifier les types from et to
 			checkEquation();
 
 			try {
 				float value = Float.parseFloat(evaluateValue.getText());
-				Reflection reflection = new Reflection();
-				reflection.setBottomOpacity(0.0);
-				reflection.setTopOpacity(0.5);
-				reflection.setTopOffset(1);
-				reflection.setFraction(0.7);
-				result.setEffect(reflection);
-				result.setText("f(" + evaluateValue.getText() +") = "+ String.valueOf(equation.evaluate(value)));
+				result.setText("f(" + evaluateValue.getText() +") = "+ equation.evaluate(value));
 				System.out.println(equation.evaluate(value));
 			}
 			catch(Exception e){
