@@ -12,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.Reflection;
 import javafx.stage.Stage;
@@ -21,13 +20,10 @@ import fr.iMath.objects.*;
 public class InputController implements Initializable {	
 
 	@FXML
-	private	TextField from, to, linspace, evaluateValue;
-	
-	@FXML 
-	private TextArea equationArea;
+	private	TextField from, to, linspace, evaluateValue, equationArea;
 
 	@FXML
-	private Label result;
+	private Label result, error;
 
 	private Equation equation = null;
 	private String equationString = "";
@@ -97,7 +93,11 @@ public class InputController implements Initializable {
 	public void help(ActionEvent event) {
 		// Do stuff ...
     }
-	
+
+	public void parametricSwitch(ActionEvent event) {
+		// Do stuff ...
+	}
+
 	private void checkEquation() {
 		if(equationString != equationArea.getText()) {
 			equationString = equationArea.getText();

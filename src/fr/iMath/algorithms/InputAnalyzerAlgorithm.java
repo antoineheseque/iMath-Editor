@@ -174,8 +174,10 @@ public class InputAnalyzerAlgorithm {
         {
             Map.Entry<Integer,EquationObjectData> m = i.next();
             EquationObjectData value = m.getValue();
-            if((previous.getType() != EquationObjectType.OPERATOR && previous.getType() != EquationObjectType.FUNCTION && value.getObject() == Operator.LEFTPARENTHESIS) || (previous.getObject() == Operator.RIGHTPARENTHESIS && value.getType() != EquationObjectType.OPERATOR)
-                    || (previous.getType() != EquationObjectType.OPERATOR && (value.getType() == EquationObjectType.VARIABLE || (value.getType() == EquationObjectType.NUMBER && Float.parseFloat(value.getObject().toString()) > 0)) || ((previous.getType() == EquationObjectType.NUMBER || previous.getType() == EquationObjectType.VARIABLE) && value.getType() == EquationObjectType.FUNCTION)))
+            if((previous.getType() != EquationObjectType.OPERATOR && previous.getType() != EquationObjectType.FUNCTION && value.getObject() == Operator.LEFTPARENTHESIS)
+                    || (previous.getObject() == Operator.RIGHTPARENTHESIS && value.getType() != EquationObjectType.OPERATOR)
+                    || (previous.getType() != EquationObjectType.OPERATOR && (value.getType() == EquationObjectType.VARIABLE || (value.getType() == EquationObjectType.NUMBER && Float.parseFloat(value.getObject().toString()) > 0))
+                    || ((previous.getType() == EquationObjectType.NUMBER || previous.getType() == EquationObjectType.VARIABLE) && value.getType() == EquationObjectType.FUNCTION)))
                 objectList.add(new EquationObjectData(Operator.MULTIPLY));
             else if(previous.getType() != EquationObjectType.OPERATOR && (value.getType() == EquationObjectType.VARIABLE || (value.getType() == EquationObjectType.NUMBER && Float.parseFloat(value.getObject().toString()) < 0)))
                 objectList.add(new EquationObjectData(Operator.PLUS));
