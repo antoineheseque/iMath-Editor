@@ -49,7 +49,7 @@ public class Math {
 	 * @param b Second number
 	 * @return pow(a,b)
 	 */
-	public static float power(float a, float b) { return (float)java.lang.Math.pow(a,b); }
+	public static float power(float a, float b) { System.out.println(a + "^" + b); return (float)java.lang.Math.pow(a,b); }
 
 	/**
 	 * Power function.
