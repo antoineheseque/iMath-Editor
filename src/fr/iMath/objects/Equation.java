@@ -40,7 +40,6 @@ public class Equation {
 		// Use the RPN Algorithm
 		@SuppressWarnings("unchecked")
 		Stack<EquationObjectData> stack = (Stack<EquationObjectData>)data.clone();
-		
 		float value = RPNAlgorithm.evaluate(stack, xValue);
 		stack = null;
 		return value;
@@ -50,7 +49,7 @@ public class Equation {
 	 * Get values for a graph between min and max with nbrValues values.
 	 * @param min The Minimum value
 	 * @param max The Maximum value
-	 * @param nbrValues The total nummber of values
+	 * @param nbrValues The total number of values
 	 * @return an array containing all the values
 	 */
 	public XYChart.Series<Float, Float> getGraph(float min, float max, int nbrValues) {

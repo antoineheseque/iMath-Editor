@@ -82,11 +82,11 @@ public class InputController implements Initializable {
 	public void evaluate(ActionEvent event) {
 		if(equationArea.getText() != "") {
 			checkEquation();
-
 			try {
 				float value = Float.parseFloat(evaluateValue.getText());
-				result.setText("f(" + evaluateValue.getText() +") = "+ equation.evaluate(value));
-				System.out.println(equation.evaluate(value));
+				float eval = equation.evaluate(value);
+				result.setText("f(" + evaluateValue.getText() +") = " + eval);
+				System.out.println(eval);
 			}
 			catch(Exception e){
 				System.out.println(e.getMessage());

@@ -6,7 +6,6 @@ import java.util.Stack;
 import fr.iMath.objects.Assoc;
 import fr.iMath.objects.EquationObjectData;
 import fr.iMath.objects.EquationObjectType;
-import fr.iMath.objects.Function;
 import fr.iMath.objects.Operator;
 
 /**
@@ -44,7 +43,7 @@ public class ShuntingYardAlgorithm {
 							(((operators.peek().getType() == EquationObjectType.FUNCTION)
 							|| ((Operator)(operators.peek().getObject())).getPrecedence() > ope.getPrecedence())
 							|| ((((Operator)(operators.peek().getObject())).getPrecedence() == ope.getPrecedence()) && ope.getAssociativity() == Assoc.LEFT_ASSOC)
-							) && (isLeftParenthesis(operators.peek()) || (operators.peek().getType() == EquationObjectType.FUNCTION)))
+							) && (!isLeftParenthesis(operators.peek()) || (operators.peek().getType() == EquationObjectType.FUNCTION)))
 					{
 						System.out.println("Push operator " + operators.peek().getObject() + " to output.");
 						output.add(operators.pop());
