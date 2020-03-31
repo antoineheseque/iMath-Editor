@@ -35,7 +35,7 @@ public class RPNAlgorithm {
 		functions.put(Function.LN, (a) -> Math.ln(a));
 		functions.put(Function.SQRT, (a) -> Math.sqrt(a));
 		functions.put(Function.EXP, (a) -> Math.exp(a));
-		functions.put(Function.SINC, (a) -> Trigonometry.tan(a));
+		functions.put(Function.SINC, (a) -> Trigonometry.sinc(a));
 	}
 	
 	public static float evaluate(Stack<EquationObjectData> data, float xValue) {
