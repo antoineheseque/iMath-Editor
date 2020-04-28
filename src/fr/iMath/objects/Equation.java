@@ -52,27 +52,7 @@ public class Equation {
 		return value;
 	}
 	
-	/**
-	 * Get values for a graph between min and max with nbrValues values.
-	 * @param min The Minimum value
-	 * @param max The Maximum value
-	 * @param nbrValues The total number of values
-	 * @return an array containing all the values
-	 */
-	public XYChart.Series<Float, Float> getGraph(float min, float max, int nbrValues) {
-		XYChart.Series<Float, Float> values = new XYChart.Series<>();
-		values.setName(prefix + function);
-		float step = (max-min) / nbrValues;
-		
-		for(int i = 0; i < nbrValues; i++) {
-			float pos = min+i*step;
-			values.getData().add(new XYChart.Data<>(pos,evaluate(pos)));
-		}
-		
-		return values;
-	}
-	
-	public String GetName() {
+	public String getName() {
 		return prefix+function;
 	}
 }

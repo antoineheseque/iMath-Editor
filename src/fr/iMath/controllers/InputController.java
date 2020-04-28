@@ -84,16 +84,19 @@ public class InputController implements Initializable {
     }
 	
 	public void evaluate(ActionEvent event) {
-		if(equationArea.getText() != "") {
+		if(!equationArea.getText().isEmpty()) {
 			checkEquation();
 			try {
 				float value = Float.parseFloat(evaluateValue.getText());
+				
 				float eval = equation.evaluate(value);
 				result.setText("f(" + evaluateValue.getText() +") = " + eval);
 				System.out.println(eval);
 			}
 			catch(Exception e){
-				System.out.println(e.getMessage());
+				// Maybe the equation was without an x ?
+				float eval = equation.evaluate(0);
+				result.setText("x = " + eval);
 			}	
 		}
 	}

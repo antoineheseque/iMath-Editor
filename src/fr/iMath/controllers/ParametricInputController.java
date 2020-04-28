@@ -72,9 +72,6 @@ public class ParametricInputController implements Initializable {
 				float max = Float.parseFloat(to.getText());
 				int nbrValues = Integer.parseInt(linspace.getText());
 				
-				XYChart.Series<Float, Float> values = equationX.getGraph(min, max, nbrValues);
-				XYChart.Series<Float, Float> values2 = equationY.getGraph(min, max, nbrValues);
-				
 				try{
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/scenes/GraphUI.fxml"));
 					Parent parent = loader.load();
@@ -84,11 +81,10 @@ public class ParametricInputController implements Initializable {
 					
 					newWindow.setTitle("Graph");
 			        newWindow.setScene(scene);
-			        
 			        newWindow.show();
 			        
 			        GraphController controller = loader.<GraphController>getController();
-			        controller.showGraph(values, values2);
+			        controller.showGraph(equationX, equationY, min, max, nbrValues);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
