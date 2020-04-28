@@ -49,8 +49,6 @@ public class InputController implements Initializable {
 				float max = Float.parseFloat(to.getText());
 				int nbrValues = Integer.parseInt(linspace.getText());
 				
-				XYChart.Series<Float, Float> values = equation.getGraph(min, max, nbrValues);
-				
 				try{
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/scenes/GraphUI.fxml"));
 					Parent parent = loader.load();
@@ -63,8 +61,18 @@ public class InputController implements Initializable {
 			        
 			        newWindow.show();
 			        
+			        //XYChart.Series<Float, Float> values = equation.getGraph(min, max, nbrValues);			        
 			        GraphController controller = loader.<GraphController>getController();
-			        controller.showGraph(values);
+			        
+			        controller.ShowGraph(equation, min, max, nbrValues);
+			        Thread t = new Thread() 
+					{
+						public void run() {
+							System.out.println("Mon traitement");
+						}
+					};
+					t.start();
+			        //controller.showGraph(values);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

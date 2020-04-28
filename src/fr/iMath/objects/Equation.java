@@ -1,12 +1,17 @@
 package fr.iMath.objects;
 
 import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import fr.iMath.algorithms.InputAnalyzerAlgorithm;
 import fr.iMath.algorithms.RPNAlgorithm;
 import fr.iMath.algorithms.ShuntingYardAlgorithm;
+import javafx.application.Platform;
+import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 
 public class Equation {
 	
@@ -65,5 +70,9 @@ public class Equation {
 		}
 		
 		return values;
+	}
+	
+	public String GetName() {
+		return prefix+function;
 	}
 }
