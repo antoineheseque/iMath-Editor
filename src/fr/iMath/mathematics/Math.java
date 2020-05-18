@@ -1,5 +1,4 @@
 package fr.iMath.mathematics;
-
 /**
  * Basic mathematics equations
  * @author HESEQUE Antoine
@@ -38,9 +37,12 @@ public class Math {
 	 * @return a/b
 	 */
 	public static float divide(float a, float b) {
-		if(b!=0)
+		if(b == 0){
+			System.out.println("Division par 0");
+			return 0;
+		}
+		else
 			return a/b;
-		return 0;
 	}
 
 	/**

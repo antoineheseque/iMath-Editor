@@ -33,7 +33,10 @@ public class Trigonometry {
      * @return sinc(a)
      */
 
-    public static float sinc(float a) { return (float)(Math.sin(a)/a); }
+    public static float sinc(float a) {
+        if(a != 0)return (float)(Math.sin(a)/a);
+        else return (float)1;
+    }
 
     /**
      * tan function.

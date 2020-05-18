@@ -41,7 +41,7 @@ public class InputController implements Initializable {
 	}
 	
 	public void showGraph(ActionEvent event) {
-		if(equationArea.getText() != "") {
+		if(!equationArea.getText().isEmpty()) {
 			checkEquation();
 			
 			try {
@@ -79,8 +79,10 @@ public class InputController implements Initializable {
 			}
 			catch(Exception e){
 				System.out.println(e.getMessage());
-			}			
+			}
 		}
+		else
+			error.setText("Attention !!!\nVeuillez entrez une équation\n");
     }
 	
 	public void evaluate(ActionEvent event) {
