@@ -33,4 +33,4 @@ iMath is using the following dependencies:
 Or click the `Clone or Download` button on the right.
 
 ### IDE
-*Coming soon ...*
+We used **Eclipse** [download here](https://www.eclipse.org/downloads/) and **IntelliJ idea**[download here](https://www.jetbrains.com/fr-fr/idea/download/#section=windows).
