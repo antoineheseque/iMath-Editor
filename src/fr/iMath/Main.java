@@ -24,6 +24,7 @@ public class Main extends Application{
 
 	/**
 	 * Load the InputUI with JavaFX
+	 * @param stage first javafx scene
 	 */
 	@Override
 	public void start(Stage stage) {

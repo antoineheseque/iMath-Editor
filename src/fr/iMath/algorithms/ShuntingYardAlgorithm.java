@@ -15,7 +15,12 @@ import fr.iMath.objects.Operator;
  * @see <a href="https://en.wikipedia.org/wiki/Shunting-yard_algorithm">ShuntingYard algorithm</a> from Wikipedia
  */
 public class ShuntingYardAlgorithm {
-	
+
+	/**
+	 * Application of the Shunting-Yard algorithm
+	 * @param list List of operators/functions which needs to be ordered
+	 * @return ordered list of operators/functions
+	 */
 	public static Stack<EquationObjectData> convert(List<EquationObjectData> list) {
 		Stack<EquationObjectData> output = new Stack<>();
 		Stack<EquationObjectData> operators = new Stack<>();
@@ -76,7 +81,12 @@ public class ShuntingYardAlgorithm {
 		
 		return output;
 	}
-	
+
+	/**
+	 * Return true if the EquationObjectData is a left parenthesis.
+	 * @param d EquationObjectData
+	 * @return true if the EquationObjectData is a left parenthesis.
+	 */
 	private static boolean isLeftParenthesis(EquationObjectData d) {
 		return (d.getType() == EquationObjectType.OPERATOR) && (d.getObject() == Operator.LEFTPARENTHESIS);
 	}

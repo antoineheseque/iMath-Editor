@@ -39,10 +39,9 @@ public class Trigonometry {
     }
 
     /**
-     * tan function.
+     * PI function.
      * @return pi
      */
-
     public static float pi() { return (float)Math.PI; }
 
 }

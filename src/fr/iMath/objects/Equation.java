@@ -13,12 +13,22 @@ import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 
+/**
+ * Equation class
+ */
 public class Equation {
-	
+	/**
+	 *  All the ordered equation data
+	 **/
 	private Stack<EquationObjectData> data;
 	private String function = "";
 	private String prefix = "f(x)=";
-	
+
+	/**
+	 * Equation constructor
+	 * @param function string function we need to convert
+	 * @param prefix prefix of the function (f(x), g(x), ...)
+	 */
 	public Equation(String function, String prefix) {
 		this.function = function;
 		this.prefix = prefix;

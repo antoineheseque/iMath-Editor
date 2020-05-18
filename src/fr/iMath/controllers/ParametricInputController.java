@@ -17,6 +17,9 @@ import javafx.scene.effect.Reflection;
 import javafx.stage.Stage;
 import fr.iMath.objects.*;
 
+/**
+ * JavaFX: Show the parametric UI menu
+ */
 public class ParametricInputController implements Initializable {
 
 	@FXML
@@ -32,6 +35,11 @@ public class ParametricInputController implements Initializable {
 	private String equationStringX = "";
 	private String equationStringY = "";
 
+	/**
+	 * Initialise the menu with default values
+	 * @param location URl
+	 * @param resources ResourceBundle
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		reflection = new Reflection();
@@ -43,6 +51,10 @@ public class ParametricInputController implements Initializable {
 		result.setText("f(x)= | g(x)= ");
 	}
 
+	/**
+	 * Calculate a single value when the button is pressed
+	 * @param event Click event
+	 */
 	public void evaluate(ActionEvent event) {
 		if(equationArea.getText() != "") {
 			checkEquation();
@@ -58,11 +70,34 @@ public class ParametricInputController implements Initializable {
 			}	
 		}
 	}
-	
+
+	/**
+	 * Show the help website
+	 * @param event ClickEvent
+	 */
 	public void help(ActionEvent event) {
-		// Do stuff ...
+		try{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/scenes/WebUI.fxml"));
+			Parent parent = loader.load();
+			Scene scene = new Scene(parent);
+			Stage newWindow = new Stage();
+
+			newWindow.setTitle("Aide");
+			newWindow.setScene(scene);
+
+			newWindow.show();
+
+			WebController controller = loader.getController();
+			controller.showWeb("http://imath.antoineh.tech/"); //https://github.com/antoineheseque/iMath-NodeEditor/blob/master/README.md
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
+	/**
+	 * Show a graph when the user click on the "Show Graph" button
+	 * @param event Click event
+	 */
 	public void showGraph(ActionEvent event) {
 		if(!equationArea.getText().isEmpty() && !equationArea2.getText().isEmpty()) {
 			checkEquation();
@@ -83,7 +118,7 @@ public class ParametricInputController implements Initializable {
 			        newWindow.setScene(scene);
 			        newWindow.show();
 			        
-			        GraphController controller = loader.<GraphController>getController();
+			        GraphController controller = loader.getController();
 			        controller.showGraph(equationX, equationY, min, max, nbrValues);
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -95,6 +130,10 @@ public class ParametricInputController implements Initializable {
 		}
 	}
 
+	/**
+	 * Open the single equation menu when the associated button is pressed.
+	 * @param event Click event
+	 */
 	public void affineSwitch(ActionEvent event) {		
 		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/scenes/InputUI.fxml"));
@@ -108,7 +147,10 @@ public class ParametricInputController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Save and create the equation when needed.
+	 */
 	private void checkEquation() {
 		if(equationArea.getText() != equationStringX || equationArea.getText() != equationStringY) {
 			equationStringX = equationArea.getText();

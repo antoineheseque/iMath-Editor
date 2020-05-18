@@ -16,8 +16,15 @@ import fr.iMath.mathematics.Trigonometry;
  * @author HESEQUE Antoine
  */
 public class RPNAlgorithm {
-	
+
+	/**
+	 * Association between operators and their associated functions.
+	 */
 	private static final HashMap<Operator, BiFunction<Float, Float, Float>> operators;
+
+	/**
+	 * Association between functions and their associated functions.
+	 */
 	private static final HashMap<Function, java.util.function.Function<Float, Float>> functions;
 	static {
 		operators = new HashMap<>();
@@ -37,7 +44,13 @@ public class RPNAlgorithm {
 		functions.put(Function.EXP, Math::exp);
 		functions.put(Function.SINC, Trigonometry::sinc);
 	}
-	
+
+	/**
+	 * Evaluate the function with the RPN Algorithm
+	 * @param data stack of equations in reverse mode
+	 * @param xValue value of x
+	 * @return The value of f(x) (float)
+	 */
 	public static float evaluate(Stack<EquationObjectData> data, float xValue) {
 		Stack<EquationObjectData> numbers = new Stack<>();
 

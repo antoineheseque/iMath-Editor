@@ -13,11 +13,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 
-public class GraphController implements Initializable {	
+/**
+ * JavaFX: Show the graph within a UI
+ */
+public class GraphController implements Initializable {
 	
 	@FXML
 	public ScatterChart<Float, Float> result;
-	
+
+	/**
+	 * Calculate all the points and show graph from two equations
+	 * @param eq1 First equation for the X-Axis
+	 * @param eq2 Second equation for the Y-Axis
+	 * @param minX Min X value
+	 * @param maxX Max X value
+	 * @param nbrValues Number of points to calculate
+	 */
 	public void showGraph(Equation eq1, Equation eq2, float minX, float maxX, int nbrValues) {
 		float step = (maxX-minX) / nbrValues;
 		result.getData().clear();
@@ -64,18 +75,16 @@ public class GraphController implements Initializable {
 	}
 	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		//result.setCreateSymbols(false);
-	}
+	public void initialize(URL location, ResourceBundle resources) { }
 	
 	/**
 	 * Get values for a graph between min and max with nbrValues values.
+	 * @param eq Selected equation
 	 * @param min The Minimum value
 	 * @param max The Maximum value
 	 * @param nbrValues The total number of values
-	 * @return an array containing all the values
 	 */
-	public void ShowGraph(Equation eq, float min, float max, int nbrValues) {
+	public void showGraph(Equation eq, float min, float max, int nbrValues) {
 		//values.setName(prefix + function);
 		float step = (max-min) / nbrValues;
 		

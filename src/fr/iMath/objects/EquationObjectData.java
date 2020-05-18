@@ -1,9 +1,9 @@
 package fr.iMath.objects;
 
+/**
+ * Contain the type of the equation object. Can be an operator, a variable or a number.
+ */
 public class EquationObjectData {
-	/**
-	 * Contain the type of the equation object. Can be an operator, a variable or a number.
-	 */
 	private EquationObjectType type;
 	private String variable;
 	private float number;

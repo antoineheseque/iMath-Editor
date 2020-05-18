@@ -16,7 +16,10 @@ import java.util.regex.Pattern;
  *
  */
 public class InputAnalyzerAlgorithm {
-	// Convert StringInput to a list of Numbers and Operations here ..
+
+    /**
+     * List of numbers and operations
+     */
     private final SortedMap<Integer, EquationObjectData> list = new TreeMap<>();
 
     /**
@@ -80,7 +83,6 @@ public class InputAnalyzerAlgorithm {
      * @param text String
      * @param regex String
      */
-
     public void matchesNegative(String text, String regex) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
@@ -136,7 +138,7 @@ public class InputAnalyzerAlgorithm {
 
     /**
      * EquationObjectData list analysis.
-     * @param list {@code Map<Integer,EquationObjectData>}
+     * @param list {@code SortedMap<Integer,EquationObjectData>}
      * @return List of EquationObjectData
      */
     public List<EquationObjectData> getList(SortedMap<Integer,EquationObjectData> list){
@@ -164,7 +166,7 @@ public class InputAnalyzerAlgorithm {
 
     /**
      * Show EquationObjectData list
-     * @param list Liste non ordonn�e
+     * @param list {@code List<EquationObjectData>}
      */
     public void showList(List<EquationObjectData> list) {
         for (EquationObjectData e : list) {

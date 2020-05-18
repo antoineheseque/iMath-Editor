@@ -10,16 +10,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.Reflection;
-import javafx.scene.layout.VBox;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import fr.iMath.objects.*;
 
+/**
+ * JavaFX: Show the single equation UI menu
+ */
 public class InputController implements Initializable {	
 
 	@FXML
@@ -33,6 +32,11 @@ public class InputController implements Initializable {
 	
 	private Reflection reflection = null;
 
+	/**
+	 * Initialise with the default values
+	 * @param location URL
+	 * @param resources ResourceBundle
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		reflection = new Reflection();
@@ -42,7 +46,11 @@ public class InputController implements Initializable {
 		reflection.setFraction(0.7);
 		result.setEffect(reflection);
 	}
-	
+
+	/**
+	 * Show a graph when the user click on the "Show Graph" button
+	 * @param event Click event
+	 */
 	public void showGraph(ActionEvent event) {
 		if(!equationArea.getText().isEmpty()) {
 			checkEquation();
@@ -66,7 +74,7 @@ public class InputController implements Initializable {
 
 			        GraphController controller = loader.getController();
 			        
-			        controller.ShowGraph(equation, min, max, nbrValues);
+			        controller.showGraph(equation, min, max, nbrValues);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -78,7 +86,11 @@ public class InputController implements Initializable {
 		else
 			error.setText("Attention !!!\nVeuillez entrer une équation\n");
     }
-	
+
+	/**
+	 * Evaluate the function
+	 * @param event Click event
+	 */
 	public void evaluate(ActionEvent event) {
 		if(!equationArea.getText().isEmpty()) {
 			checkEquation();
@@ -96,7 +108,11 @@ public class InputController implements Initializable {
 			}	
 		}
 	}
-	
+
+	/**
+	 * Open the help website
+	 * @param event Click event
+	 */
 	public void help(ActionEvent event) {
 		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/scenes/WebUI.fxml"));
@@ -116,6 +132,10 @@ public class InputController implements Initializable {
 		}
     }
 
+    /**
+	 * Open the parametric equation menu when the associated button is pressed.
+	 * @param event Click event
+	 */
 	public void parametricSwitch(ActionEvent event) {
 		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/scenes/ParametricInputUI.fxml"));
@@ -130,6 +150,9 @@ public class InputController implements Initializable {
 		}
 	}
 
+	/**
+	 * Save and create the equation when needed.
+	 */
 	private void checkEquation() {
 		if(!equationString.equals(equationArea.getText())) {
 			equationString = equationArea.getText();
