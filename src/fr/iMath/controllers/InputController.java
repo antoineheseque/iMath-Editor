@@ -14,6 +14,9 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.Reflection;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import fr.iMath.objects.*;
 
@@ -95,7 +98,22 @@ public class InputController implements Initializable {
 	}
 	
 	public void help(ActionEvent event) {
-		// Do stuff ...
+		try{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/scenes/WebUI.fxml"));
+			Parent parent = loader.load();
+			Scene scene = new Scene(parent);
+			Stage newWindow = new Stage();
+
+			newWindow.setTitle("Aide");
+			newWindow.setScene(scene);
+
+			newWindow.show();
+
+			WebController controller = loader.getController();
+			controller.showWeb("http://imath.antoineh.tech/"); //https://github.com/antoineheseque/iMath-NodeEditor/blob/master/README.md
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
 	public void parametricSwitch(ActionEvent event) {
