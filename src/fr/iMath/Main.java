@@ -31,7 +31,7 @@ public class Main extends Application{
 			Parent parent = FXMLLoader.load(getClass().getResource("resources/scenes/InputUI.fxml"));
 			Scene scene = new Scene(parent);
 			stage.setScene(scene);
-			stage.setTitle("[v1.0.3] iMath : Editor");
+			stage.setTitle("[v1.1.2] iMath : Editor");
 			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
