@@ -60,19 +60,10 @@ public class InputController implements Initializable {
 			        newWindow.setScene(scene);
 			        
 			        newWindow.show();
-			        
-			        //XYChart.Series<Float, Float> values = equation.getGraph(min, max, nbrValues);			        
-			        GraphController controller = loader.<GraphController>getController();
+
+			        GraphController controller = loader.getController();
 			        
 			        controller.ShowGraph(equation, min, max, nbrValues);
-			        Thread t = new Thread() 
-					{
-						public void run() {
-							System.out.println("Mon traitement");
-						}
-					};
-					t.start();
-			        //controller.showGraph(values);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -82,7 +73,7 @@ public class InputController implements Initializable {
 			}
 		}
 		else
-			error.setText("Attention !!!\nVeuillez entrez une équation\n");
+			error.setText("Attention !!!\nVeuillez entrer une équation\n");
     }
 	
 	public void evaluate(ActionEvent event) {
@@ -122,7 +113,7 @@ public class InputController implements Initializable {
 	}
 
 	private void checkEquation() {
-		if(equationString != equationArea.getText()) {
+		if(!equationString.equals(equationArea.getText())) {
 			equationString = equationArea.getText();
 			equation = new Equation(equationString, "f(x)=");
 		}

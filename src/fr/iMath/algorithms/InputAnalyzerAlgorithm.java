@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  */
 public class InputAnalyzerAlgorithm {
 	// Convert StringInput to a list of Numbers and Operations here ..
-    private SortedMap<Integer, EquationObjectData> list = new TreeMap<>();
+    private final SortedMap<Integer, EquationObjectData> list = new TreeMap<>();
 
     /**
      * Analyse.
@@ -49,31 +49,18 @@ public class InputAnalyzerAlgorithm {
                 Matcher matcherFunction = patternFunction.matcher(matcher.group());
                 Function function;
                 if(matcherFunction.find()){
-                    switch(matcher.group()) {
-                        case "ln":
-                            function = Function.LN;
-                            break;
-                        case "sqrt":
-                            function = Function.SQRT;
-                            break;
-                        case "sin":
-                            function = Function.SIN;
-                            break;
-                        case "sinc":
-                            function = Function.SINC;
-                            break;
-                        case "exp":
-                            function = Function.EXP;
-                            break;
-                        case "cos":
-                            function = Function.COS;
-                            break;
-                        case "tan":
-                            function = Function.TAN;
-                            break;
-                        default:
-                            list.put(matcher.start(), new EquationObjectData((float)Math.PI));
+                    switch (matcher.group()) {
+                        case "ln" -> function = Function.LN;
+                        case "sqrt" -> function = Function.SQRT;
+                        case "sin" -> function = Function.SIN;
+                        case "sinc" -> function = Function.SINC;
+                        case "exp" -> function = Function.EXP;
+                        case "cos" -> function = Function.COS;
+                        case "tan" -> function = Function.TAN;
+                        default -> {
+                            list.put(matcher.start(), new EquationObjectData((float) Math.PI));
                             continue;
+                        }
                     }
                     list.put(matcher.start(), new EquationObjectData(function));
                 }
@@ -130,28 +117,15 @@ public class InputAnalyzerAlgorithm {
         Operator operator;
         while (matcher.find()) {
             if(matcher.group().length() != 0){
-                switch(matcher.group()){
-                    case "+":
-                        operator = Operator.PLUS;
-                        break;
-                    case "*":
-                        operator = Operator.MULTIPLY;
-                        break;
-                    case "/":
-                        operator = Operator.DIVIDE;
-                        break;
-                    case "^":
-                        operator = Operator.POWER;
-                        break;
-                    case "(":
-                        operator = Operator.LEFTPARENTHESIS;
-                        break;
-                    case ")":
-                        operator = Operator.RIGHTPARENTHESIS;
-                        break;
-                    default:
-                        operator = Operator.MINUS;
-                }
+                operator = switch (matcher.group()) {
+                    case "+" -> Operator.PLUS;
+                    case "*" -> Operator.MULTIPLY;
+                    case "/" -> Operator.DIVIDE;
+                    case "^" -> Operator.POWER;
+                    case "(" -> Operator.LEFTPARENTHESIS;
+                    case ")" -> Operator.RIGHTPARENTHESIS;
+                    default -> Operator.MINUS;
+                };
                 if(operator != Operator.MINUS)
                     list.put(matcher.start(), new EquationObjectData(operator));
                 else

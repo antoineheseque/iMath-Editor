@@ -26,12 +26,12 @@ public class Main extends Application{
 	 * Load the InputUI with JavaFX
 	 */
 	@Override
-	public void start(Stage stage) throws Exception {
+	public void start(Stage stage) {
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("resources/scenes/InputUI.fxml"));
 			Scene scene = new Scene(parent);
 			stage.setScene(scene);
-			stage.setTitle("[v1.0.3] iMath : NodeEditor");
+			stage.setTitle("[v1.0.3] iMath : Editor");
 			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

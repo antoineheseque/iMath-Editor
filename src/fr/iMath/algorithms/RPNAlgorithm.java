@@ -17,30 +17,30 @@ import fr.iMath.mathematics.Trigonometry;
  */
 public class RPNAlgorithm {
 	
-	private static HashMap<Operator, BiFunction<Float, Float, Float>> operators;
-	private static HashMap<Function, java.util.function.Function<Float, Float>> functions;
+	private static final HashMap<Operator, BiFunction<Float, Float, Float>> operators;
+	private static final HashMap<Function, java.util.function.Function<Float, Float>> functions;
 	static {
-		operators = new HashMap<Operator, BiFunction<Float, Float, Float>>();
-		functions = new HashMap<Function, java.util.function.Function<Float, Float>>();
+		operators = new HashMap<>();
+		functions = new HashMap<>();
 		
-		operators.put(Operator.PLUS, (a,b) -> Math.add(a, b));
-		operators.put(Operator.MINUS, (a,b) -> Math.substract(a, b));
-		operators.put(Operator.MULTIPLY, (a,b) -> Math.multiply(a, b));
-		operators.put(Operator.DIVIDE, (a,b) -> Math.divide(a, b));
-		operators.put(Operator.POWER, (a,b) -> Math.power(a, b));
+		operators.put(Operator.PLUS, Math::add);
+		operators.put(Operator.MINUS, Math::substract);
+		operators.put(Operator.MULTIPLY, Math::multiply);
+		operators.put(Operator.DIVIDE, Math::divide);
+		operators.put(Operator.POWER, Math::power);
 		
-		functions.put(Function.COS, (a) -> Trigonometry.cos(a));
-		functions.put(Function.SIN, (a) -> Trigonometry.sin(a));
-		functions.put(Function.TAN, (a) -> Trigonometry.tan(a));
-		functions.put(Function.LN, (a) -> Math.ln(a));
-		functions.put(Function.SQRT, (a) -> Math.sqrt(a));
-		functions.put(Function.EXP, (a) -> Math.exp(a));
-		functions.put(Function.SINC, (a) -> Trigonometry.sinc(a));
+		functions.put(Function.COS, Trigonometry::cos);
+		functions.put(Function.SIN, Trigonometry::sin);
+		functions.put(Function.TAN, Trigonometry::tan);
+		functions.put(Function.LN, Math::ln);
+		functions.put(Function.SQRT, Math::sqrt);
+		functions.put(Function.EXP, Math::exp);
+		functions.put(Function.SINC, Trigonometry::sinc);
 	}
 	
 	public static float evaluate(Stack<EquationObjectData> data, float xValue) {
-		Stack<EquationObjectData> numbers = new Stack<EquationObjectData>();
-		
+		Stack<EquationObjectData> numbers = new Stack<>();
+
 		while(!data.isEmpty()) {
 			EquationObjectData obj = data.remove(0);
 			

@@ -27,36 +27,36 @@ public class GraphController implements Initializable {
 		result.getData().add(new XYChart.Series<>());
 		
 		// Queue of data still waiting to be shown.
-		Queue<Float[]> calculatedPoints = new ConcurrentLinkedQueue<Float[]>();
+		Queue<Float[]> calculatedPoints = new ConcurrentLinkedQueue<>();
 		
-		Task<Void> task = new Task<Void>() {
+		Task<Void> task = new Task<>() {
 			@Override
-			protected Void call() throws Exception {
-				int nbrToCalculate = Math.round((nbrValues/1000))+1;
-				for(int i = 0; i < nbrValues; i=i+nbrToCalculate) {
+			protected Void call() {
+				int nbrToCalculate = Math.round((nbrValues / 1000)) + 1;
+				for (int i = 0; i < nbrValues; i = i + nbrToCalculate) {
 					// Stack some values together
-					for(int j = 0; j < nbrToCalculate; j++) {
-						float pos = minX+(i+j)*step;
-						Float[] values = {0f,0f};
+					for (int j = 0; j < nbrToCalculate; j++) {
+						float pos = minX + (i + j) * step;
+						Float[] values = {0f, 0f};
 						values[0] = eq1.evaluate(pos);
 						values[1] = eq2.evaluate(pos);
 						calculatedPoints.add(values);
 					}
-					
+
 					// And show them
 					try {
 						Platform.runLater(() -> {
-							while(!calculatedPoints.isEmpty()) {
+							while (!calculatedPoints.isEmpty()) {
 								Float[] val = calculatedPoints.poll();
 								result.getData().get(0).getData().add(new XYChart.Data<>(val[0], val[1]));
 							}
-		           		});
-			            Thread.sleep(5);
-			        } catch (Exception exc) {
-			            // should not be able to get here...
-			            throw new Error("Unexpected interruption");
-			        }
-		        }
+						});
+						Thread.sleep(5);
+					} catch (Exception exc) {
+						// should not be able to get here...
+						throw new Error("Unexpected interruption");
+					}
+				}
 				return null;
 			}
 		};
@@ -86,34 +86,34 @@ public class GraphController implements Initializable {
 		result.getData().add(new XYChart.Series<>());
 		
 		// Queue of data still waiting to be shown.
-		Queue<Float[]> calculatedPoints = new ConcurrentLinkedQueue<Float[]>();
+		Queue<Float[]> calculatedPoints = new ConcurrentLinkedQueue<>();
 		
-		Task<Void> task = new Task<Void>() {
+		Task<Void> task = new Task<>() {
 			@Override
-			protected Void call() throws Exception {
-				int nbrToCalculate = Math.round((nbrValues/1000))+1;
-				for(int i = 0; i < nbrValues; i=i+nbrToCalculate) {
+			protected Void call() {
+				int nbrToCalculate = Math.round((nbrValues / 1000)) + 1;
+				for (int i = 0; i < nbrValues; i = i + nbrToCalculate) {
 					// Stack some values together
-					for(int j = 0; j < nbrToCalculate; j++) {
-						float pos = min+(i+j)*step;
+					for (int j = 0; j < nbrToCalculate; j++) {
+						float pos = min + (i + j) * step;
 						Float[] values = {pos, eq.evaluate(pos)};
 						calculatedPoints.add(values);
 					}
-					
+
 					// And show them
 					try {
 						Platform.runLater(() -> {
-							while(!calculatedPoints.isEmpty()) {
+							while (!calculatedPoints.isEmpty()) {
 								Float[] val = calculatedPoints.poll();
 								result.getData().get(0).getData().add(new XYChart.Data<>(val[0], val[1]));
 							}
-		           		});
-			            Thread.sleep(5);
-			        } catch (Exception exc) {
-			            // should not be able to get here...
-			            throw new Error("Unexpected interruption");
-			        }
-		        }
+						});
+						Thread.sleep(5);
+					} catch (Exception exc) {
+						// should not be able to get here...
+						throw new Error("Unexpected interruption");
+					}
+				}
 				return null;
 			}
 		};

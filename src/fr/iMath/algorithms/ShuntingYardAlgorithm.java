@@ -17,8 +17,8 @@ import fr.iMath.objects.Operator;
 public class ShuntingYardAlgorithm {
 	
 	public static Stack<EquationObjectData> convert(List<EquationObjectData> list) {
-		Stack<EquationObjectData> output = new Stack<EquationObjectData>();
-		Stack<EquationObjectData> operators = new Stack<EquationObjectData>();
+		Stack<EquationObjectData> output = new Stack<>();
+		Stack<EquationObjectData> operators = new Stack<>();
 		
 		while(!list.isEmpty()) {
 			EquationObjectData token = list.remove(0);
@@ -78,9 +78,6 @@ public class ShuntingYardAlgorithm {
 	}
 	
 	private static boolean isLeftParenthesis(EquationObjectData d) {
-		if((d.getType() == EquationObjectType.OPERATOR) && (d.getObject() == Operator.LEFTPARENTHESIS))
-			return true;
-		else
-			return false;
+		return (d.getType() == EquationObjectType.OPERATOR) && (d.getObject() == Operator.LEFTPARENTHESIS);
 	}
 }
