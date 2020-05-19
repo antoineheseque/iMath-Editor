@@ -94,6 +94,24 @@ public class InputController implements Initializable {
 	public void evaluate(ActionEvent event) {
 		if(!equationArea.getText().isEmpty()) {
 			checkEquation();
+			if(equationArea.getText().equals("1+1")){ //Easter egg
+				try{
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/scenes/WebUI.fxml"));
+					Parent parent = loader.load();
+					Scene scene = new Scene(parent);
+					Stage newWindow = new Stage();
+
+					newWindow.setTitle("1+1");
+					newWindow.setScene(scene);
+
+					newWindow.show();
+
+					WebController controller = loader.getController();
+					controller.showWeb("https://www.youtube.com/watch?v=KaasJ44O5lI");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 			try {
 				float value = Float.parseFloat(evaluateValue.getText());
 				
